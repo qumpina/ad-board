@@ -1,0 +1,14 @@
+services:
+  bulletinDB:
+    image: postgres:15.4
+    container_name: boardDB
+    environment:
+      POSTGRES_DB: bulletinDB
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: 123
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+volumes:
+  postgres_data:
