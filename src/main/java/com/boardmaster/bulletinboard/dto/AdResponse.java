@@ -16,11 +16,20 @@ public class AdResponse {
   private LocalDateTime createdAt;
   private String authorUsername;
 
-  // TODO: Builder
-  public AdResponse() {
+  public AdResponse(){}
+
+  public AdResponse(AdBuilder adBuilder) {
+    this.id=adBuilder.id;
+    this.name= adBuilder.name;
+    this.price= adBuilder.price;
+    this.description= adBuilder.description;
+    this.category=adBuilder.category;
+    this.status=adBuilder.status;
+    this.createdAt=adBuilder.createdAt;
+    this.authorUsername=adBuilder.authorUsername;
   }
 
-  public AdResponse(Long id, String name, int price, String description, Category category, AdStatus status, LocalDateTime createdAt, String authorUsername) {
+  private AdResponse(Long id, String name, int price, String description, Category category, AdStatus status, LocalDateTime createdAt, String authorUsername) {
     this.id = id;
     this.name = name;
     this.price = price;
@@ -35,63 +44,76 @@ public class AdResponse {
     return id;
   }
 
-  public void setId(Long id) {
-    this.id = id;
-  }
 
   public String getName() {
     return name;
-  }
-
-  public void setName(String name) {
-    this.name = name;
   }
 
   public int getPrice() {
     return price;
   }
 
-  public void setPrice(int price) {
-    this.price = price;
-  }
-
   public String getDescription() {
     return description;
   }
 
-  public void setDescription(String description) {
-    this.description = description;
-  }
 
   public Category getCategory() {
     return category;
-  }
-
-  public void setCategory(Category category) {
-    this.category = category;
   }
 
   public AdStatus getStatus() {
     return status;
   }
 
-  public void setStatus(AdStatus status) {
-    this.status = status;
-  }
 
   public LocalDateTime getCreatedAt() {
     return createdAt;
   }
 
-  public void setCreatedAt(LocalDateTime createdAt) {
-    this.createdAt = createdAt;
-  }
 
   public String getAuthorUsername() {
     return authorUsername;
   }
 
-  public void setAuthorUsername(String authorUsername) {
-    this.authorUsername = authorUsername;
+  public static class AdBuilder{
+    private Long id;
+    private String name;
+    private int price;
+    private String description;
+    private Category category;
+    private AdStatus status;
+    private LocalDateTime createdAt;
+    private String authorUsername;
+
+    public AdBuilder(Long id, String name, AdStatus status, String authorUsername) {
+      this.id = id;
+      this.name = name;
+      this.status = status;
+      this.authorUsername = authorUsername;
+    }
+
+    public AdBuilder setPrice(int price) {
+      this.price = price;
+      return this;
+    }
+
+    public AdBuilder setDescription(String description) {
+      this.description = description;
+      return this;
+    }
+
+    public AdBuilder setCategory(Category category) {
+      this.category = category;
+      return this;
+    }
+    public AdBuilder setCreatedAt(LocalDateTime time){
+      this.createdAt= time;
+      return this;
+    }
+    public AdResponse build(){
+      return new AdResponse(this);
+    }
   }
+
 }

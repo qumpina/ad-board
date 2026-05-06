@@ -1,4 +1,4 @@
-package com.boardmaster.bulletinboard.repositry;
+package com.boardmaster.bulletinboard.repository;
 
 import com.boardmaster.bulletinboard.entity.AdStatus;
 import com.boardmaster.bulletinboard.entity.Advertisement;
@@ -16,4 +16,6 @@ public interface AdRepository extends JpaRepository<Advertisement, Long> {
   List<Advertisement> findByCategory(Category category);
 
   List<Advertisement> findByDescriptionContainingIgnoreCase(String description);
+
+  List<Advertisement> findByNameContainingIgnoreCase(String keyword);
 }

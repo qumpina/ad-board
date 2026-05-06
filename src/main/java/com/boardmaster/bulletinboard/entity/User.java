@@ -3,7 +3,6 @@ package com.boardmaster.bulletinboard.entity;
 
 import jakarta.persistence.*;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -27,6 +26,9 @@ public class User {
   private List<Advertisement> ads;
 
 
+  public User(){
+
+  }
 
   public List<Advertisement> getAds() {
     return ads;

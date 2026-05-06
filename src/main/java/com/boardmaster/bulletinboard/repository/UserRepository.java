@@ -1,4 +1,4 @@
-package com.boardmaster.bulletinboard.repositry;
+package com.boardmaster.bulletinboard.repository;
 
 import com.boardmaster.bulletinboard.entity.User;
 import org.springframework.data.jpa.repository.JpaRepository;

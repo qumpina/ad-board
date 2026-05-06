@@ -20,7 +20,7 @@ public class AdRequest {
   private AdStatus status;
   @NotBlank
   private Long userId;
-  // TODO: Перевести на паттерн builder
+
   public AdRequest(String name, int price, String description, Category category, AdStatus status, Long userId) {
     this.name = name;
     this.price = price;
