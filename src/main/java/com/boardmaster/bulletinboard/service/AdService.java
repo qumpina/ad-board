@@ -41,7 +41,7 @@ public class AdService {
     return advertisement;
   }
 
-  public AdResponse createAt(AdRequest adRequest) {
+  public AdResponse createAd(AdRequest adRequest) {
     User user = userRepository.findById(adRequest.getUserId()).orElseThrow(() -> new RuntimeException("User not found"));
     Advertisement ad = getAdFromRequest(adRequest);
     ad.setAuthor(user);

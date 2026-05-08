@@ -18,7 +18,7 @@ public class AdRequest {
   private Category category;
   @NotNull
   private AdStatus status;
-  @NotBlank
+  @NotNull
   private Long userId;
 
   public AdRequest(String name, int price, String description, Category category, AdStatus status, Long userId) {
