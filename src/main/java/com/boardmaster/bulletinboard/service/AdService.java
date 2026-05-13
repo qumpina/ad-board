@@ -6,6 +6,7 @@ import com.boardmaster.bulletinboard.entity.AdStatus;
 import com.boardmaster.bulletinboard.entity.Advertisement;
 import com.boardmaster.bulletinboard.entity.Category;
 import com.boardmaster.bulletinboard.entity.User;
+import com.boardmaster.bulletinboard.exception.ResourceNotFoundException;
 import com.boardmaster.bulletinboard.repository.AdRepository;
 import com.boardmaster.bulletinboard.repository.UserRepository;
 import org.springframework.stereotype.Service;
@@ -42,7 +43,7 @@ public class AdService {
   }
 
   public AdResponse createAd(AdRequest adRequest) {
-    User user = userRepository.findById(adRequest.getUserId()).orElseThrow(() -> new RuntimeException("User not found"));
+    User user = userRepository.findById(adRequest.getUserId()).orElseThrow(() -> new ResourceNotFoundException("User", adRequest.getUserId()));
     Advertisement ad = getAdFromRequest(adRequest);
     ad.setAuthor(user);
     ad.setStatus(AdStatus.ACTIVE);
@@ -53,7 +54,7 @@ public class AdService {
   }
 
   public AdResponse getAdById(Long id) {
-    Advertisement ad = adRepository.findById(id).orElseThrow(() -> new RuntimeException("Ad not found"));
+    Advertisement ad = adRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Ad", id));
     return getAdResponse(ad);
   }
 

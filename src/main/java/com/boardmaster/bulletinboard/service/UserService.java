@@ -3,6 +3,7 @@ package com.boardmaster.bulletinboard.service;
 import com.boardmaster.bulletinboard.dto.UserRequest;
 import com.boardmaster.bulletinboard.dto.UserResponse;
 import com.boardmaster.bulletinboard.entity.User;
+import com.boardmaster.bulletinboard.exception.ResourceNotFoundException;
 import com.boardmaster.bulletinboard.repository.UserRepository;
 import org.springframework.stereotype.Service;
 
@@ -44,7 +45,7 @@ public class UserService {
 
   public UserResponse getUserById(Long id) {
 
-    User user = userRepository.findById(id).orElseThrow(()-> new RuntimeException("User not found"));
+    User user = userRepository.findById(id).orElseThrow(()-> new ResourceNotFoundException("User", id));
     return getUserResponse(user);
 
 
