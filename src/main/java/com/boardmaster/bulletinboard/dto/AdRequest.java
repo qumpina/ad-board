@@ -2,6 +2,7 @@ package com.boardmaster.bulletinboard.dto;
 
 import com.boardmaster.bulletinboard.entity.AdStatus;
 import com.boardmaster.bulletinboard.entity.Category;
+import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.PositiveOrZero;
@@ -11,14 +12,20 @@ public class AdRequest {
 
   @NotBlank
   @Size(min=3,max=200)
+  @Schema(description = "Название объявления", example = "Лыжи")
   private String name;
   @PositiveOrZero
+  @Schema(description = "Цена", example = "1000")
   private int price;
+  @Schema(description = "Описание объявления", example = "Почти новые")
   private String description;
+  @Schema(description = "Категория товара", example = "AUTO")
   private Category category;
   @NotNull
+  @Schema(description = "Статус объявления", example = "ACTIVE")
   private AdStatus status;
   @NotNull
+  @Schema(description = "ID создателя",example = "5")
   private Long userId;
 
   public AdRequest(String name, int price, String description, Category category, AdStatus status, Long userId) {
